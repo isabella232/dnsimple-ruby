@@ -18,7 +18,7 @@ module Dnsimple
         endpoint = Client.versioned("/%s/templates" % [account_id])
         response = client.get(endpoint, options)
 
-        Dnsimple::PaginatedResponse.new(response, response["data"].map { |r| Struct::Template.new(r) })
+        PaginatedResponse.new(response, response["data"].map { |r| Struct::Template.new(r) })
       end
       alias list templates
       alias list_templates templates
@@ -64,7 +64,7 @@ module Dnsimple
         endpoint = Client.versioned("/%s/templates" % [account_id])
         response = client.post(endpoint, attributes, options)
 
-        Dnsimple::Response.new(response, Struct::Template.new(response["data"]))
+        Response.new(response, Struct::Template.new(response["data"]))
       end
       alias create create_template
 
@@ -85,7 +85,7 @@ module Dnsimple
         endpoint = Client.versioned("/%s/templates/%s" % [account_id, template_id])
         response = client.get(endpoint, options)
 
-        Dnsimple::Response.new(response, Struct::Template.new(response["data"]))
+        Response.new(response, Struct::Template.new(response["data"]))
       end
 
       # Updates template with specified ID with provided data.
@@ -106,7 +106,7 @@ module Dnsimple
         endpoint = Client.versioned("/%s/templates/%s" % [account_id, template_id])
         response = client.patch(endpoint, attributes, options)
 
-        Dnsimple::Response.new(response, Struct::Template.new(response["data"]))
+        Response.new(response, Struct::Template.new(response["data"]))
       end
       alias update update_template
 
@@ -130,7 +130,7 @@ module Dnsimple
         endpoint = Client.versioned("/%s/templates/%s" % [account_id, template_id])
         response = client.delete(endpoint, options)
 
-        Dnsimple::Response.new(response, nil)
+        Response.new(response, nil)
       end
       alias delete delete_template
 

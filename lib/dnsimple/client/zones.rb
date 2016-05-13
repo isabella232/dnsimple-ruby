@@ -21,7 +21,7 @@ module Dnsimple
       def zones(account_id, options = {})
         response = client.get(Client.versioned("/%s/zones" % [account_id]), options)
 
-        Dnsimple::PaginatedResponse.new(response, response["data"].map { |r| Struct::Zone.new(r) })
+        PaginatedResponse.new(response, response["data"].map { |r| Struct::Zone.new(r) })
       end
       alias list zones
       alias list_zones zones
@@ -60,7 +60,7 @@ module Dnsimple
       def zone(account_id, zone_id, options = {})
         response = client.get(Client.versioned("/%s/zones/%s" % [account_id, zone_id]), options)
 
-        Dnsimple::Response.new(response, Struct::Zone.new(response["data"]))
+        Response.new(response, Struct::Zone.new(response["data"]))
       end
 
     end

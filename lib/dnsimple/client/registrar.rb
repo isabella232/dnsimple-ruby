@@ -19,7 +19,7 @@ module Dnsimple
         endpoint = Client.versioned("/%s/registrar/domains/%s/check" % [account_id, domain_name])
         response = client.get(endpoint, options)
 
-        Dnsimple::Response.new(response, Struct::DomainCheck.new(response["data"]))
+        Response.new(response, Struct::DomainCheck.new(response["data"]))
       end
 
       # Registers a domain.
@@ -42,7 +42,7 @@ module Dnsimple
         endpoint = Client.versioned("/%s/registrar/domains/%s/registration" % [account_id, domain_name])
         response = client.post(endpoint, attributes, options)
 
-        Dnsimple::Response.new(response, Struct::Domain.new(response["data"]))
+        Response.new(response, Struct::Domain.new(response["data"]))
       end
 
       # Renews a domain.
@@ -63,7 +63,7 @@ module Dnsimple
         endpoint = Client.versioned("/%s/registrar/domains/%s/renewal" % [account_id, domain_name])
         response = client.post(endpoint, attributes, options)
 
-        Dnsimple::Response.new(response, Struct::Domain.new(response["data"]))
+        Response.new(response, Struct::Domain.new(response["data"]))
       end
 
       # Starts the transfer of a domain to DNSimple.
@@ -85,7 +85,7 @@ module Dnsimple
         endpoint = Client.versioned("/%s/registrar/domains/%s/transfer" % [account_id, domain_name])
         response = client.post(endpoint, attributes, options)
 
-        Dnsimple::Response.new(response, Struct::Domain.new(response["data"]))
+        Response.new(response, Struct::Domain.new(response["data"]))
       end
 
       # Requests the transfer of a domain out of DNSimple.
@@ -105,7 +105,7 @@ module Dnsimple
         endpoint = Client.versioned("/%s/registrar/domains/%s/transfer_out" % [account_id, domain_name])
         response = client.post(endpoint, nil, options)
 
-        Dnsimple::Response.new(response, nil)
+        Response.new(response, nil)
       end
     end
   end

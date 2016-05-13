@@ -36,7 +36,7 @@ module Dnsimple
         Extra.validate_mandatory_attributes(attributes, [:url])
         response = client.post(Client.versioned("/%s/webhooks" % [account_id]), attributes, options)
 
-        Dnsimple::Response.new(response, Struct::Webhook.new(response["data"]))
+        Response.new(response, Struct::Webhook.new(response["data"]))
       end
       alias create create_webhook
 
@@ -54,7 +54,7 @@ module Dnsimple
       def webhook(account_id, webhook_id, options = {})
         response = client.get(Client.versioned("/%s/webhooks/%s" % [account_id, webhook_id]), options)
 
-        Dnsimple::Response.new(response, Struct::Webhook.new(response["data"]))
+        Response.new(response, Struct::Webhook.new(response["data"]))
       end
 
       # Deletes a webook from the account.
@@ -73,7 +73,7 @@ module Dnsimple
       def delete_webhook(account_id, webhook_id, options = {})
         response = client.delete(Client.versioned("/%s/webhooks/%s" % [account_id, webhook_id]), nil, options)
 
-        Dnsimple::Response.new(response, nil)
+        Response.new(response, nil)
       end
       alias delete delete_webhook
 

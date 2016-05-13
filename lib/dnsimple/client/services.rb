@@ -17,7 +17,7 @@ module Dnsimple
         endpoint = Client.versioned("/services")
         response = client.get(endpoint, options)
 
-        Dnsimple::PaginatedResponse.new(response, response["data"].map { |r| Struct::Service.new(r) })
+        PaginatedResponse.new(response, response["data"].map { |r| Struct::Service.new(r) })
       end
       alias list services
       alias list_services services
@@ -61,7 +61,7 @@ module Dnsimple
         endpoint = Client.versioned("/services/%s" % [service_id])
         response = client.get(endpoint, options)
 
-        Dnsimple::Response.new(response, Struct::Service.new(response["data"]))
+        Response.new(response, Struct::Service.new(response["data"]))
       end
     end
   end

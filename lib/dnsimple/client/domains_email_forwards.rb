@@ -22,7 +22,7 @@ module Dnsimple
       def email_forwards(account_id, domain_id, options = {})
         response = client.get(Client.versioned("/%s/domains/%s/email_forwards" % [account_id, domain_id]), options)
 
-        Dnsimple::PaginatedResponse.new(response, response["data"].map { |r| Struct::EmailForward.new(r) })
+        PaginatedResponse.new(response, response["data"].map { |r| Struct::EmailForward.new(r) })
       end
 
       # Lists ALL the email forwards for the domain.
@@ -61,7 +61,7 @@ module Dnsimple
         Extra.validate_mandatory_attributes(attributes, [:from, :to])
         response = client.post(Client.versioned("/%s/domains/%s/email_forwards" % [account_id, domain_id]), attributes, options)
 
-        Dnsimple::Response.new(response, Struct::EmailForward.new(response["data"]))
+        Response.new(response, Struct::EmailForward.new(response["data"]))
       end
 
       # Gets a email forward for the domain.
@@ -79,7 +79,7 @@ module Dnsimple
       def email_forward(account_id, domain_id, email_forward_id, options = {})
         response = client.get(Client.versioned("/%s/domains/%s/email_forwards/%s" % [account_id, domain_id, email_forward_id]), options)
 
-        Dnsimple::Response.new(response, Struct::EmailForward.new(response["data"]))
+        Response.new(response, Struct::EmailForward.new(response["data"]))
       end
 
       # Deletes an email forward for the domain.
@@ -99,7 +99,7 @@ module Dnsimple
       def delete_email_forward(account_id, domain_id, email_forward_id, options = {})
         response = client.delete(Client.versioned("/%s/domains/%s/email_forwards/%s" % [account_id, domain_id, email_forward_id]), nil, options)
 
-        Dnsimple::Response.new(response, nil)
+        Response.new(response, nil)
       end
 
     end

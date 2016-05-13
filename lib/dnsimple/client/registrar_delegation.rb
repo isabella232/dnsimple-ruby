@@ -19,7 +19,7 @@ module Dnsimple
         endpoint = Client.versioned("/%s/registrar/domains/%s/delegation" % [account_id, domain_name])
         response = client.get(endpoint, options)
 
-        Dnsimple::Response.new(response, response["data"])
+        Response.new(response, response["data"])
       end
 
       # Chagne name servers the domain is delegating to.
@@ -41,7 +41,7 @@ module Dnsimple
         endpoint = Client.versioned("/%s/registrar/domains/%s/delegation" % [account_id, domain_name])
         response = client.put(endpoint, attributes, options)
 
-        Dnsimple::Response.new(response, response["data"])
+        Response.new(response, response["data"])
       end
 
     end

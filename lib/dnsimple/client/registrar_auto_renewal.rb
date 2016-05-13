@@ -16,7 +16,7 @@ module Dnsimple
       def enable_auto_renewal(account_id, domain_name, options = {})
         response = client.put(Client.versioned("/%s/registrar/domains/%s/auto_renewal" % [account_id, domain_name]), nil, options)
 
-        Dnsimple::Response.new(response, nil)
+        Response.new(response, nil)
       end
 
       # Disable auto renewal for the domain in the account.
@@ -33,7 +33,7 @@ module Dnsimple
       def disable_auto_renewal(account_id, domain_name, options = {})
         response = client.delete(Client.versioned("/%s/registrar/domains/%s/auto_renewal" % [account_id, domain_name]), nil, options)
 
-        Dnsimple::Response.new(response, nil)
+        Response.new(response, nil)
       end
 
     end

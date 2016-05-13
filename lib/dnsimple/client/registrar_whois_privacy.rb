@@ -19,7 +19,7 @@ module Dnsimple
         endpoint = whois_privacy_endpoint(account_id, domain_name)
         response = client.get(endpoint, options)
 
-        Dnsimple::Response.new(response, Struct::WhoisPrivacy.new(response["data"]))
+        Response.new(response, Struct::WhoisPrivacy.new(response["data"]))
       end
 
       # Enables whois privacy for the domain.
@@ -39,7 +39,7 @@ module Dnsimple
         endpoint = whois_privacy_endpoint(account_id, domain_name)
         response = client.put(endpoint, nil, options)
 
-        Dnsimple::Response.new(response, Struct::WhoisPrivacy.new(response["data"]))
+        Response.new(response, Struct::WhoisPrivacy.new(response["data"]))
       end
 
       # Disables whois privacy for the domain.
@@ -59,7 +59,7 @@ module Dnsimple
         endpoint = whois_privacy_endpoint(account_id, domain_name)
         response = client.delete(endpoint, nil, options)
 
-        Dnsimple::Response.new(response, Struct::WhoisPrivacy.new(response["data"]))
+        Response.new(response, Struct::WhoisPrivacy.new(response["data"]))
       end
 
 

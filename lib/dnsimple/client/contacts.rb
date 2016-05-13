@@ -21,7 +21,7 @@ module Dnsimple
       def contacts(account_id, options = {})
         response = client.get(Client.versioned("/%s/contacts" % [account_id]), options)
 
-        Dnsimple::PaginatedResponse.new(response, response["data"].map { |r| Struct::Contact.new(r) })
+        PaginatedResponse.new(response, response["data"].map { |r| Struct::Contact.new(r) })
       end
       alias list contacts
       alias list_contacts contacts
@@ -61,7 +61,7 @@ module Dnsimple
         Extra.validate_mandatory_attributes(attributes, [:first_name, :last_name, :address1, :city, :state_province, :postal_code, :country, :phone, :email_address])
         response = client.post(Client.versioned("/%s/contacts" % [account_id]), attributes, options)
 
-        Dnsimple::Response.new(response, Struct::Contact.new(response["data"]))
+        Response.new(response, Struct::Contact.new(response["data"]))
       end
       alias create create_contact
 
@@ -79,7 +79,7 @@ module Dnsimple
       def contact(account_id, contact_id, options = {})
         response = client.get(Client.versioned("/%s/contacts/%s" % [account_id, contact_id]), options)
 
-        Dnsimple::Response.new(response, Struct::Contact.new(response["data"]))
+        Response.new(response, Struct::Contact.new(response["data"]))
       end
 
       # Updates a contact in the account.
@@ -96,7 +96,7 @@ module Dnsimple
       def update_contact(account_id, contact_id, attributes, options = {})
         response = client.patch(Client.versioned("/%s/contacts/%s" % [account_id, contact_id]), attributes, options)
 
-        Dnsimple::Response.new(response, Struct::Contact.new(response["data"]))
+        Response.new(response, Struct::Contact.new(response["data"]))
       end
       alias update update_contact
 
@@ -116,7 +116,7 @@ module Dnsimple
       def delete_contact(account_id, contact_id, options = {})
         response = client.delete(Client.versioned("/%s/contacts/%s" % [account_id, contact_id]), nil, options)
 
-        Dnsimple::Response.new(response, nil)
+        Response.new(response, nil)
       end
       alias delete delete_contact
 

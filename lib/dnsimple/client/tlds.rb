@@ -18,7 +18,7 @@ module Dnsimple
       def tlds(options = {})
         response = client.get(Client.versioned("/tlds"), options)
 
-        Dnsimple::PaginatedResponse.new(response, response["data"].map { |r| Struct::Tld.new(r) })
+        PaginatedResponse.new(response, response["data"].map { |r| Struct::Tld.new(r) })
       end
       alias list tlds
       alias list_tlds tlds
@@ -62,7 +62,7 @@ module Dnsimple
       def tld(tld, options = {})
         response = client.get(Client.versioned("/tlds/%s" % tld), options)
 
-        Dnsimple::Response.new(response, Struct::Tld.new(response["data"]))
+        Response.new(response, Struct::Tld.new(response["data"]))
       end
 
       # Gets the extended attributes for a TLD.

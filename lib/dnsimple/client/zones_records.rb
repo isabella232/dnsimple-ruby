@@ -22,7 +22,7 @@ module Dnsimple
       def records(account_id, zone_id, options = {})
         response = client.get(Client.versioned("/%s/zones/%s/records" % [account_id, zone_id]), options)
 
-        Dnsimple::PaginatedResponse.new(response, response["data"].map { |r| Struct::Record.new(r) })
+        PaginatedResponse.new(response, response["data"].map { |r| Struct::Record.new(r) })
       end
       alias list_records records
 
@@ -62,7 +62,7 @@ module Dnsimple
         Extra.validate_mandatory_attributes(attributes, [:type, :name, :content])
         response = client.post(Client.versioned("/%s/zones/%s/records" % [account_id, zone_id]), attributes, options)
 
-        Dnsimple::Response.new(response, Struct::Record.new(response["data"]))
+        Response.new(response, Struct::Record.new(response["data"]))
       end
 
       # Gets a zone record from the account.
@@ -80,7 +80,7 @@ module Dnsimple
       def record(account_id, zone_id, record_id, options = {})
         response = client.get(Client.versioned("/%s/zones/%s/records/%s" % [account_id, zone_id, record_id]), options)
 
-        Dnsimple::Response.new(response, Struct::Record.new(response["data"]))
+        Response.new(response, Struct::Record.new(response["data"]))
       end
 
       # Updates a zone record in the account.
@@ -99,7 +99,7 @@ module Dnsimple
       def update_record(account_id, zone_id, record_id, attributes, options = {})
         response = client.patch(Client.versioned("/%s/zones/%s/records/%s" % [account_id, zone_id, record_id]), attributes, options)
 
-        Dnsimple::Response.new(response, Struct::Record.new(response["data"]))
+        Response.new(response, Struct::Record.new(response["data"]))
       end
 
       # Deletes a zone record from the account.
@@ -119,7 +119,7 @@ module Dnsimple
       def delete_record(account_id, zone_id, record_id, options = {})
         response = client.delete(Client.versioned("/%s/zones/%s/records/%s" % [account_id, zone_id, record_id]), nil, options)
 
-        Dnsimple::Response.new(response, nil)
+        Response.new(response, nil)
       end
 
     end
